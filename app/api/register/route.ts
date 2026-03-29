@@ -30,3 +30,4 @@ export async function POST(req: NextRequest) {
     console.error(err);
     return NextResponse.json({ error: 'Registration failed.' }, { status: 500 });
   }
+}
