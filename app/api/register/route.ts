@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
         name: name.trim(),
         email: email.trim().toLowerCase(),
         passwordHash,
-        university: university ?? 'University of Rwanda',
+        university: university ?? 'Universities in Rwanda',
       },
       select: { id: true, name: true, email: true },
     });
