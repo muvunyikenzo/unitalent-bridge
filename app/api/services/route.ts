@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     const page = Math.max(1, parseInt(searchParams.get('page') ?? '1'));
     const limit = Math.min(50, parseInt(searchParams.get('limit') ?? '12'));
 
-    const where: Record<string, unknown> = { isActive: true };
+    const where: Record<string, any> = { isActive: true };
 
     if (search) {
       where.OR = [
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
       where.category = { equals: category, mode: 'insensitive' };
     }
 
-    const orderByMap: Record<string, unknown> = {
+    const orderByMap: Record<string, any> = {
       ranking:    [{ rankingScore: 'desc' }, { createdAt: 'desc' }],
       price_asc:  { price: 'asc' },
       price_desc: { price: 'desc' },
