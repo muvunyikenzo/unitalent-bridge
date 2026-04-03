@@ -49,6 +49,6 @@ export async function GET(
     return NextResponse.json(user);
   } catch (error) {
     console.error('[GET /api/users/[id]]', error);
-    return NextResponse.json({ error: 'Failed to load profile' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to load profile' }, { status: 500 }); 
   }
 }
