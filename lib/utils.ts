@@ -1,5 +1,8 @@
 export function isWithinNewTalentWindow(createdAt: Date | string): boolean {
-  return (Date.now() - new Date(createdAt).getTime()) < 7 * 24 * 60 * 60 * 1000;
+  const created = new Date(createdAt).getTime();
+  const now = Date.now();
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  return (now - created) < sevenDays;
 }
 
 export function timeAgo(date: Date | string): string {
@@ -7,9 +10,9 @@ export function timeAgo(date: Date | string): string {
   const then = new Date(date).getTime();
   const diff = Math.floor((now - then) / 1000);
   if (diff < 60) return 'just now';
-  if (diff < 3600) return ${Math.floor(diff / 60)}m ago;
-  if (diff < 86400) return ${Math.floor(diff / 3600)}h ago;
-  return ${Math.floor(diff / 86400)}d ago;
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return `${Math.floor(diff / 86400)}d ago`;
 }
 
 export function getInitials(name: string): string {
@@ -32,10 +35,3 @@ export const CATEGORIES = [
   { name: 'Language Help',        icon: '🌍', color: '#0891B2' },
   { name: 'Other',                icon: '⭐', color: '#6B7280' },
 ] as const;
-
-export function isWithinNewTalentWindow(createdAt: Date | string): boolean {
-  const created = new Date(createdAt).getTime();
-  const now = Date.now();
-  const sevenDays = 7 * 24 * 60 * 60 * 1000;
-  return (now - created) < sevenDays;
-}
