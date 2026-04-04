@@ -33,5 +33,5 @@ export const CATEGORIES = [
   { name: 'Food & Catering',      icon: '🍲', color: '#DC2626' },
   { name: 'Music & Audio',        icon: '🎵', color: '#4F46E5' },
   { name: 'Language Help',        icon: '🌍', color: '#0891B2' },
-  { name: 'Other',                icon: '⭐', color: '#6B7280' },
+  { name: 'Other unique Talents',                icon: '⭐', color: '#6B7280' },
 ] as const;
