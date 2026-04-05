@@ -1,3 +1,7 @@
+'use client';
+import { useSession, signOut } from 'next-auth/react';
+
+
 import Link from 'next/link';
 
 const CATEGORIES = [
@@ -12,6 +16,7 @@ const CATEGORIES = [
 ];
 
 export default function HomePage() {
+  const { data: session } = useSession();
   return (
     <main style={{
       minHeight: '100vh',
@@ -41,17 +46,32 @@ export default function HomePage() {
           <Link href="/services" style={{ color: '#555', textDecoration: 'none', fontSize: '14px' }}>Services</Link>
           <Link href="/requests" style={{ color: '#555', textDecoration: 'none', fontSize: '14px' }}>Requests</Link>
           <Link href="/post-service" style={{ color: '#555', textDecoration: 'none', fontSize: '14px' }}>Post a Service</Link>
-          <Link href="/auth/signin" style={{
-            backgroundColor: '#111',
-            color: '#fff',
-            padding: '8px 16px',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            fontSize: '13px',
-            fontWeight: '500',
-          }}>
-            Sign in
-          </Link>
+          {session ? (
+  <button onClick={() => signOut()} style={{
+    backgroundColor: '#111',
+    color: '#fff',
+    padding: '8px 16px',
+    borderRadius: '8px',
+    border: 'none',
+    fontSize: '13px',
+    fontWeight: '500',
+    cursor: 'pointer',
+  }}>
+    Sign out ({session.user?.name})
+  </button>
+) : (
+  <Link href="/auth/signin" style={{
+    backgroundColor: '#111',
+    color: '#fff',
+    padding: '8px 16px',
+    borderRadius: '8px',
+    textDecoration: 'none',
+    fontSize: '13px',
+    fontWeight: '500',
+  }}>
+    Sign in
+  </Link>
+)}
         </div>
       </nav>
 
