@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -18,6 +19,7 @@ const CATEGORIES = [
 
 export default function PostServicePage() {
   const router = useRouter();
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [form, setForm] = useState({
@@ -48,6 +50,7 @@ export default function PostServicePage() {
         body: JSON.stringify({
           ...form,
           price: parseInt(form.price),
+          userId: session?.user?.id,
         }),
       });
 
